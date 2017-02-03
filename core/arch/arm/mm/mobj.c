@@ -114,12 +114,14 @@ static bool mobj_phys_matches(struct mobj *mobj, enum buf_is_attr attr)
 	switch (attr) {
 	case CORE_MEM_SEC:
 		return a == CORE_MEM_SEC || a == CORE_MEM_TEE_RAM ||
+		       a == CORE_MEM_SDP_MEM ||
 		       a == CORE_MEM_TA_RAM;
 	case CORE_MEM_NON_SEC:
 		return a == CORE_MEM_NSEC_SHM;
 	case CORE_MEM_TEE_RAM:
 	case CORE_MEM_TA_RAM:
 	case CORE_MEM_NSEC_SHM:
+	case CORE_MEM_SDP_MEM:
 		return attr == a;
 	default:
 		return false;
@@ -159,8 +161,9 @@ struct mobj *mobj_phys_alloc(paddr_t pa, size_t size, uint32_t cattr,
 		return NULL;
 	}
 
+	/* only SDP memory may not have a virtaul address */
 	va = phys_to_virt(pa, battr);
-	if (!va)
+	if (!va && battr != CORE_MEM_SDP_MEM)
 		return NULL;
 
 	moph = calloc(1, sizeof(*moph));
