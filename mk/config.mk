@@ -226,3 +226,6 @@ ifneq ($(CFG_TA_GPROF_SUPPORT),y)
 $(error Cannot instrument user libraries if user mode profiling is disabled)
 endif
 endif
+
+# Enable Secure Data Path support in OP-TEE core
+CFG_WITH_SDP ?= n

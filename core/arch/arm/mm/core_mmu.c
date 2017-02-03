@@ -255,6 +255,10 @@ static void verify_sdp_mem_areas(struct tee_mmap_region *mem_map, size_t len)
 	struct tee_mmap_region *mmap;
 	size_t n;
 
+#ifndef CFG_WITH_SDP
+	if (start != end)
+		IMSG("Registered SDP memories but CFG_WITH_SDP is not enable");
+#endif
 	for (mem = start; mem < end; mem++)
 		DMSG("SDP memory [%" PRIxPA " %" PRIxPA "]",
 			mem->addr, mem->addr + mem->size);
