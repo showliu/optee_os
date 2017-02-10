@@ -289,14 +289,14 @@ static TEE_Result check_client(struct tee_ta_session *s, const TEE_Identity *id)
  * - All TAs can access TEE private memory (seccpy)
  * - Only SDP flaged TAs can accept SDP memory references.
  */
-#ifndef CFG_WITH_SDP
+#ifndef CFG_SECURE_DATA_PATH
 static bool check_params(struct tee_ta_session *sess __unused,
 			 struct tee_ta_param *param __unused)
 {
 	/*
-	 * When CFG_WITH_SDP is not enable, no SDP memory reference is allowed
-	 * at OP-TEE core entry. Hence here all TAs have same permissions
-	 * regarding memory reference parameters.
+	 * When CFG_SECURE_DATA_PATH is not enable, SDP memory references
+	 * are rejected at OP-TEE core entry. Hence here all TAs have same
+	 * permissions regarding memory reference parameters.
 	 */
 	return true;
 }
@@ -307,8 +307,8 @@ static bool check_params(struct tee_ta_session *sess,
 	int n;
 
 	/*
-	 * When CFG_WITH_SDP is enable, OP-TEE entry allows SHM and SDP memory
-	 * references. Only TAs flagged SDP can access SDP memory references.
+	 * When CFG_SECURE_DATA_PATH is enable, OP-TEE entry allows SHM and SDP
+	 * memory references. Only TAs flagged SDP can access SDP memory.
 	 */
 	if (sess->ctx->flags & TA_FLAG_SECURE_DATA_PATH)
 		return true;

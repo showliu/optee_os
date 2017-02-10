@@ -255,9 +255,9 @@ static void verify_sdp_mem_areas(struct tee_mmap_region *mem_map, size_t len)
 	struct tee_mmap_region *mmap;
 	size_t n;
 
-#ifndef CFG_WITH_SDP
+#ifndef CFG_SECURE_DATA_PATH
 	if (start != end)
-		IMSG("Registered SDP memories but CFG_WITH_SDP is not enable");
+		IMSG("Found SDP memories but CFG_SECURE_DATA_PATH is disable");
 #endif
 	for (mem = start; mem < end; mem++)
 		DMSG("SDP memory [%" PRIxPA " %" PRIxPA "]",

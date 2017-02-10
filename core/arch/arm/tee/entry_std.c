@@ -81,7 +81,7 @@ static TEE_Result assign_mobj_to_mem_param(const paddr_t pa, const size_t sz,
 	if (mem_param_from_mobj(mem, shm_mobj, pa, sz))
 		return TEE_SUCCESS;
 
-#ifdef CFG_WITH_SDP
+#ifdef CFG_SECURE_DATA_PATH
 	/* belongs to SDP memories ? */
 	for (mobj = sdp_mem_mobjs; *mobj; mobj++)
 		if (mem_param_from_mobj(mem, *mobj, pa, sz))

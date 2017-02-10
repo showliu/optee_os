@@ -227,5 +227,6 @@ $(error Cannot instrument user libraries if user mode profiling is disabled)
 endif
 endif
 
-# Enable Secure Data Path support in OP-TEE core
-CFG_WITH_SDP ?= n
+# Enable Secure Data Path support in OP-TEE core (TA may be invoked with
+# invocation parameters referring to specific secure memories).
+CFG_SECURE_DATA_PATH ?= n
