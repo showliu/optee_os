@@ -535,7 +535,7 @@ TEE_Result tee_ta_open_session(TEE_ErrorOrigin *err,
 	}
 
 	if (!check_params(s, param))
-		return TEE_ERROR_BAD_PARAMETERS; /* intentional generic error */
+		return TEE_ERROR_BAD_PARAMETERS;
 
 	ctx = s->ctx;
 
@@ -593,7 +593,7 @@ TEE_Result tee_ta_invoke_command(TEE_ErrorOrigin *err,
 		return TEE_ERROR_BAD_PARAMETERS; /* intentional generic error */
 
 	if (!check_params(sess, param))
-		return TEE_ERROR_BAD_PARAMETERS; /* intentional generic error */
+		return TEE_ERROR_BAD_PARAMETERS;
 
 	if (sess->ctx->panicked) {
 		DMSG("   Panicked !");
