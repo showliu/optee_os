@@ -257,8 +257,9 @@ static void verify_sdp_mem_areas(struct tee_mmap_region *mem_map, size_t len)
 
 #ifndef CFG_SECURE_DATA_PATH
 	if (start != end)
-		IMSG("Found SDP memories but CFG_SECURE_DATA_PATH is disable");
+		panic("Found SDP memories but CFG_SECURE_DATA_PATH is disable");
 #endif
+
 	for (mem = start; mem < end; mem++)
 		DMSG("SDP memory [%" PRIxPA " %" PRIxPA "]",
 			mem->addr, mem->addr + mem->size);
