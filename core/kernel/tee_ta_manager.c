@@ -309,6 +309,7 @@ static bool check_params(struct tee_ta_session *sess,
 	/*
 	 * When CFG_SECURE_DATA_PATH is enable, OP-TEE entry allows SHM and SDP
 	 * memory references. Only TAs flagged SDP can access SDP memory.
+	 * Note: pseudo-TAs currently do not support the SDP propertie (flag).
 	 */
 	if (sess->ctx->flags & TA_FLAG_SECURE_DATA_PATH)
 		return true;
