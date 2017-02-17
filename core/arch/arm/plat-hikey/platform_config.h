@@ -90,14 +90,26 @@
 #define TZSRAM_SIZE		CFG_CORE_TZSRAM_EMUL_SIZE
 
 #define TZDRAM_BASE		0x3F100000
-#define TZDRAM_SIZE		(15 * 1024 * 1024)
-
+//#define TZDRAM_SIZE		(15 * 1024 * 1024)
+#define TZDRAM_SIZE     (15 * 1024 * 1024)
 #else /* CFG_WITH_PAGER */
 
 #define TZDRAM_BASE		0x3F000000
-#define TZDRAM_SIZE		(16 * 1024 * 1024)
+//#define TZDRAM_SIZE		(16 * 1024 * 1024)
+#define TZDRAM_SIZE       (16 * 1024 * 1024) 
 
 #endif /* CFG_WITH_PAGER */
+
+ /* Secure RAM: SDP memory followed by OP-TEE secure memory */
+#define SECRAM_BASE       0x3FD00000
+#define SECRAM_SIZE       0x00300000
+
+#ifdef CFG_WITH_SDP
+#define CFG_TEE_SDP_MEM_BASE  SECRAM_BASE
+#define CFG_TEE_SDP_MEM_SIZE  SECRAM_SIZE
+#else
+#define CFG_TEE_SDP_MEM_SIZE  0
+#endif
 
 #define CFG_SHMEM_START		0x3EE00000
 #define CFG_SHMEM_SIZE		(2 * 1024 * 1024)
