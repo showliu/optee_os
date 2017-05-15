@@ -74,9 +74,13 @@
  *    Secure Data Path (SDP) pool: 3 MiB      | (TZDRAM)
  *  0x3F00_0000                               -
  *    Shared memory: 2 MiB                    |
- *  0x3EE0_0000                               |
- *    Reserved by UEFI for OP-TEE, unused     |  DRAM0
- *  0x3E00_0000                               |
+ *  0x3EE0_0000                               | DRAM0
+ *    Reserved by UEFI for OP-TEE, unused     |
+ *  0x3EC0_0000                               -
+ *    Secure Data Path buffers: 4 MiB         | DRAM0 (secure)
+ *  0x3E80_0000 [CFG_TEE_SDP_MEM_BASE]        -
+ *    Reserved by UEFI for OP-TEE, unused     |
+ *  0x3E00_0000                               | DRAM0
  *    Available to Linux                      |
  *  0x0000_0000 [DRAM0_BASE]                  -
  *
@@ -92,9 +96,13 @@
  *    Secure Data Path (SDP) pool: 3 MiB      | (TZDRAM)
  *  0x3F00_0000                               -
  *    Shared memory: 2 MiB                    |
- *  0x3EE0_0000                               |
- *    Reserved by UEFI for OP-TEE, unused     |  DRAM0
- *  0x3E00_0000                               |
+ *  0x3EE0_0000                               | DRAM0
+ *    Reserved by UEFI for OP-TEE, unused     |
+ *  0x3EC0_0000                               -
+ *    Secure Data Path buffers: 4 MiB         | DRAM0 (secure)
+ *  0x3E80_0000 [CFG_TEE_SDP_MEM_BASE]        -
+ *    Reserved by UEFI for OP-TEE, unused     |
+ *  0x3E00_0000                               | DRAM0
  *    Available to Linux                      |
  *  0x0000_0000 [DRAM0_BASE]                  -
  */
